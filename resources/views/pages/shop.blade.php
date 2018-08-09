@@ -31,8 +31,8 @@
     <h2>{{$categoryName}}</h2>
         <div>   
             <strong>Price :</strong>
-            <a href="">Low to High</a> |
-            <a href="">High to Low</a>
+            <a href="{{route('shop.index', ['category' => request()->category, 'sort' => 'low_high'])}}">Low to High</a> |
+            <a href="{{route('shop.index', ['category' => request()->category, 'sort' => 'high_low'])}}">High to Low</a>
         </div>
     </div>
 
