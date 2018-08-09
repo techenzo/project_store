@@ -81,6 +81,7 @@
 </div>   
 <div align="right">
 {{-- {{ $products->links() }}   --}}
+{{$products->appends(request()->input())->links()}}
 </div>
                 
     {{-- You Might Also LIKE --}}

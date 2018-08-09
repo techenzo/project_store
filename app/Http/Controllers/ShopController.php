@@ -19,20 +19,33 @@ class ShopController extends Controller
         // $products = Product::inRandomOrder()->take(8)->get();
         // return view('pages.shop')->with('products', $products);
 
+        $pagination = 12;
+        $categories = Category::all();
+
+
         if(request()->category){
             $products = Product::with('categories')->whereHas('categories', function($query){
                 $query->where('slug', request()->category);
-            })->get();
-            $categories = Category::all();
-            $categoryName = $categories->where('slug', request()->category)->first()->name;
+            });
+            // $categories = Category::all();
+            $categoryName = optional( $categories->where('slug', request()->category)->first())->name;
         }
         else{
-            // $products = Product::all();
+            $products = Product::all();
             // $products = Product::inRandomOrder()->simplePaginate(12);
-            $products = Product::inRandomOrder()->take(12)->get();
-            $categories = Category::all();
+            // $products = Product::inRandomOrder()->take(12)->get();
+            // $categories = Category::all();
             $categoryName = 'Featured';
         }
+
+        if(request()->sort == 'low_high'){
+            $products = $products->orderBy('price')->paginate($pagination);
+        }elseif(request()->sort == 'high_low'){
+            $products = $products->orderBy('price', 'desc')->paginate($pagination);
+        }else{
+            $products = $products->simplePaginate($pagination);
+        }
+
         $mightAlsoLike = Product::mightAlsoLike()->take(3)->get();
         return view('pages.shop')->with([
             'products' => $products,
