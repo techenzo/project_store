@@ -52,7 +52,7 @@
                         <h5><a href="{{route('shop.show', $product->slug)}}">{{$product->name}}</a></h5>
                     </div>
                     <div class="price col-md-4">
-                        <h5 class="price-text-color">{{$product->price}}</h5>
+                    <h5 class="price-text-color">{{moneyformat($product->price)}}</h5>
                     </div>    
                 </div>
                 <div class="row">

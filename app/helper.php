@@ -14,3 +14,7 @@ function setActiveCategory($category)
 function printEcho(){
     echo ('hello');
 }
+
+function moneyformat($price){
+    return money($price, 'php');
+}
