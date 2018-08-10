@@ -89,8 +89,8 @@
                                                     <td class="col-sm-1 col-md-1" style="text-align: center">
                                                     <input type="email" class="form-control" id="exampleInputEmail1" value="{{Cart::count()}}">
                                                     </td>
-                                                    <td class="col-sm-1 col-md-1 text-center"><strong>{{$item->model->price}}</strong></td>
-                                                    <td class="col-sm-1 col-md-1 text-center"><strong>{{$item->model->price * Cart::count()}}</strong></td>
+                                                    <td class="col-sm-1 col-md-1 text-center"><strong>{{moneyformat($item->model->price)}}</strong></td>
+                                                    <td class="col-sm-1 col-md-1 text-center"><strong>{{moneyformat($item->model->price * Cart::count())}}</strong></td>
                                                     <td class="col-sm-1 col-md-1">
                                                         <form action="{{route('cart.destroy', $item->rowId)}}" method="POST">
                                                         {{csrf_field()}}
@@ -136,7 +136,7 @@
                                                     <td>   </td>
                                                     <td>   </td>
                                                     <td><h5>Subtotal</h5></td>
-                                                    <td class="text-right"><h5><strong>{{Cart::subtotal()}}</strong></h5></td>
+                                                    <td class="text-right"><h5><strong>{{moneyformat(Cart::subtotal())}}</strong></h5></td>
                                                 </tr>
                                                 
                                                 <tr>
@@ -154,7 +154,7 @@
                                                     </td>
                                                     @endif
                                                         @if(session()->has('coupon'))
-                                                        <td class="text-right"><h5><strong>{{session()->get('coupon')['discount']}}</strong></h5></td>
+                                                        <td class="text-right"><h5><strong>{{moneyformat(session()->get('coupon')['discount'])}}</strong></h5></td>
                                                         @endif
                                                     </tr>
                                                 <tr>
@@ -162,14 +162,14 @@
                                                     <td>   </td>
                                                     <td>   </td>
                                                     <td><h5>Tax</h5></td>
-                                                    <td class="text-right"><h5><strong>{{Cart::tax()}}</strong></h5></td>
+                                                    <td class="text-right"><h5><strong>{{moneyformat(Cart::tax())}}</strong></h5></td>
                                                 </tr>
                                                 <tr>
                                                     <td>   </td>
                                                     <td>   </td>
                                                     <td>   </td>
                                                     <td><h3>Total</h3></td>
-                                                    <td class="text-right"><h3><strong>{{Cart::total()}}</strong></h3></td>
+                                                    <td class="text-right"><h3><strong>{{moneyformat(Cart::total())}}</strong></h3></td>
                                                 </tr>
                                             </tbody>
                                         </table>

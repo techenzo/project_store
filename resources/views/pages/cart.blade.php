@@ -53,8 +53,8 @@
                                 <option {{ $item->qty == 5 ? 'selected' : ''}}>5</option> --}}
                             </select> 
                             </td>
-                            <td class="col-sm-1 col-md-1 text-center"><strong>{{$item->model->price}}</strong></td>
-                            <td class="col-sm-1 col-md-1 text-center"><strong>{{$item->model->price * Cart::count()}}</strong></td>
+                            <td class="col-sm-1 col-md-1 text-center"><strong>{{moneyformat($item->model->price)}}</strong></td>
+                            <td class="col-sm-1 col-md-1 text-center"><strong>{{moneyformat($item->model->price * Cart::count())}}</strong></td>
                             <td class="col-sm-1 col-md-1">
                                 <form action="{{route('cart.destroy', $item->rowId)}}" method="POST">
                                 {{csrf_field()}}
@@ -100,21 +100,21 @@
                             <td>   </td>
                             <td>   </td>
                             <td><h5>Subtotal</h5></td>
-                            <td class="text-right"><h5><strong>{{Cart::subtotal()}}</strong></h5></td>
+                            <td class="text-right"><h5><strong>{{moneyformat(Cart::subtotal())}}</strong></h5></td>
                         </tr>
                         <tr>
                             <td>   </td>
                             <td>   </td>
                             <td>   </td>
                             <td><h5>Tax</h5></td>
-                            <td class="text-right"><h5><strong>{{Cart::tax()}}</strong></h5></td>
+                            <td class="text-right"><h5><strong>{{moneyformat(Cart::tax())}}</strong></h5></td>
                         </tr>
                         <tr>
                             <td>   </td>
                             <td>   </td>
                             <td>   </td>
                             <td><h3>Total</h3></td>
-                            <td class="text-right"><h3><strong>{{Cart::total()}}</strong></h3></td>
+                            <td class="text-right"><h3><strong>{{moneyformat(Cart::total())}}</strong></h3></td>
                         </tr>
                         <tr>
                             <td>   </td>
@@ -175,8 +175,8 @@
                             <td class="col-sm-1 col-md-1" style="text-align: center">
                             <input type="email" class="form-control" id="exampleInputEmail1" value="{{Cart::instance('saveForLater')->count()}}">
                             </td>
-                            <td class="col-sm-1 col-md-1 text-center"><strong>{{$item->model->price}}</strong></td>
-                            <td class="col-sm-1 col-md-1 text-center"><strong>{{$item->model->price * Cart::instance('saveForLater')->count()}}</strong></td>
+                            <td class="col-sm-1 col-md-1 text-center"><strong>{{moneyformat($item->model->price)}}</strong></td>
+                            <td class="col-sm-1 col-md-1 text-center"><strong>{{moneyformat($item->model->price * Cart::instance('saveForLater')->count())}}</strong></td>
                             <td class="col-sm-1 col-md-1">
                                 <form action="{{route('saveForLater.destroy', $item->rowId)}}" method="POST">
                                 {{csrf_field()}}
@@ -236,7 +236,7 @@
                                             <h5><a href = "{{route('shop.show', $product->slug)}}">
                                                 {{$product->name}}</h5></a>
                                             <h5 class="price-text-color">
-                                                {{$product->price}}</h5>
+                                                {{moneyformat($product->price)}}</h5>
                                         </div>
                                         <div class="rating hidden-sm col-md-6">
                                             <i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star">
@@ -273,7 +273,7 @@
                                             <h5><a href = "{{route('shop.show', $product->slug)}}">
                                                 {{$product->name}}</h5></a>
                                             <h5 class="price-text-color">
-                                                {{$product->price}}</h5>
+                                                {{moneyformat($product->price)}}</h5>
                                         </div>
                                         <div class="rating hidden-sm col-md-6">
                                             <i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star">

@@ -118,7 +118,7 @@
                                                 <h5><a href = "{{route('shop.show', $likeproduct->slug)}}">
                                                     {{$likeproduct->name}}</h5></a>
                                                 <h5 class="price-text-color">
-                                                    {{$likeproduct->price}}</h5>
+                                                    {{moneyformat($likeproduct->price)}}</h5>
                                             </div>
                                             {{-- <div class="rating hidden-sm col-md-6">
                                                 <i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star">
@@ -154,7 +154,7 @@
                                                     <h5><a href = "{{route('shop.show', $likeproduct->slug)}}">
                                                         {{$likeproduct->name}}</h5></a>
                                                     <h5 class="price-text-color">
-                                                        {{$likeproduct->price}}</h5>
+                                                        {{moneyformat($likeproduct->price)}}</h5>
                                                 </div>
                                                 <div class="rating hidden-sm col-md-6">
                                                     <i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star">
