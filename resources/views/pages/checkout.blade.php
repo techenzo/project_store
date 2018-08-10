@@ -138,6 +138,25 @@
                                                     <td><h5>Subtotal</h5></td>
                                                     <td class="text-right"><h5><strong>{{Cart::subtotal()}}</strong></h5></td>
                                                 </tr>
+                                                
+                                                <tr>
+                                                    @if(session()->has('coupon'))
+                                                    <td>   </td>
+                                                    <td>   </td>
+                                                    <td>   </td>    
+                                                    <td> 
+                                                        <h5>Discount {{session()->get('coupon')['name']}}</h5>
+                                                        <form action="{{route('coupon.destroy')}}" method ="POST">
+                                                            {{csrf_field()}}
+                                                            {{method_field('delete')}}             
+                                                            <input style="vertical-align:bottom;overflow:visible; font-size:1em; display:inline;  margin:0; padding:0; border:0; border-bottom:1px solid blue; color:blue; cursor:pointer;" name="Submit" type="submit" value="remove">
+                                                        </form>
+                                                    </td>
+                                                    @endif
+                                                        @if(session()->has('coupon'))
+                                                        <td class="text-right"><h5><strong>{{session()->get('coupon')['discount']}}</strong></h5></td>
+                                                        @endif
+                                                    </tr>
                                                 <tr>
                                                     <td>   </td>
                                                     <td>   </td>
