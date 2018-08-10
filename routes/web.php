@@ -33,7 +33,7 @@ Route::delete('/saveForLater/{product}', 'SaveForLaterController@destroy')->name
 Route::post('/saveForLater/switchToCart/{product}', 'SaveForLaterController@switchToCart')->name('saveForLater.switchToCart');
 
 Route::post('/coupon', 'CouponsController@store')->name('coupon.store');
-Route::deleet('/coupon', 'CouponsController@destroy')->name('coupon.destroy');
+Route::delete('/coupon', 'CouponsController@destroy')->name('coupon.destroy');
 
 
 Route::get('/checkout', 'CheckoutController@index')->name('checkout.index');
