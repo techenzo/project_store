@@ -31,7 +31,7 @@ class ShopController extends Controller
             $categoryName = optional( $categories->where('slug', request()->category)->first())->name;
         }
         else{
-            $products = Product::all();
+            $products = Product::where('featured', true);
             // $products = Product::inRandomOrder()->simplePaginate(12);
             // $products = Product::inRandomOrder()->take(12)->get();
             // $categories = Category::all();
@@ -43,7 +43,7 @@ class ShopController extends Controller
         }elseif(request()->sort == 'high_low'){
             $products = $products->orderBy('price', 'desc')->paginate($pagination);
         }else{
-            $products = $products->simplePaginate($pagination);
+            $products = $products->paginate($pagination);
         }
 
         $mightAlsoLike = Product::mightAlsoLike()->take(3)->get();

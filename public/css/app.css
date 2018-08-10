@@ -8359,3 +8359,7 @@ button.close {
           justify-content: space-between !important;
 }
 
+li.active {
+  font-weight: 800 !important;
+}
+

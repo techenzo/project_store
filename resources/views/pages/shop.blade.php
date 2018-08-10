@@ -4,20 +4,22 @@
 
 <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
           <li class="breadcrumb-item active" aria-current="page">Shop</li>
         </ol>
 </nav>
 @endsection
 
 @section('sidebar')
-<div class= "col-sm-2">
-    <div class = "products categories">
+<div class= "col-sm-2 sidebar">
+    <div class = "products categories sidebar">
             <ul class ="category" style ="list-style-type: none;">
             @foreach($categories as $category)
-                <li><a href="{{route('shop.index', ['category' =>$category->slug])}}">{{$category->name}}</a></li>
+            <li class ="{{request()->category == $category->slug ? 'active' : ''}}"><a href="{{route('shop.index', ['category' =>$category->slug])}}">{{$category->name}}</a></li>
+            {{-- <li class ="{{setActiveCategory($category->slug)}}"><a href="{{route('shop.index', ['category' =>$category->slug])}}">{{$category->name}}</a></li> --}}
             @endforeach
             </ul>
+           
     </div>
 </div>
 
