@@ -100,21 +100,28 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        return $request->all();
+        // return Cart::all();
 
-        $validator = Validator::make($request->all(),[
-            'quantity' => 'required|numeric|between:1,10'
-        ]);
+
+
+        // $validator = Validator::make($request->all(),[
+        //     'quantity' => 'required|numeric|between:1,10'
+        // ]);
+
+        Cart::update($request->id, $request->quantity);
+        // session()->flash('success', 'Quantity was updated successfuly!');
+        $arrJSON = array();
+        array_push($arrJSON, array('id' => $request->id, 'quantity' => $request->quantity));
+        // return $arrJSON;
+        return response()->json(['carts' =>$arrJSON]);
 
         if($validator->fails()){
             session()->flash('error', collect(['Quantity must be between 1 and 10.']));
             return response()->json(['success' =>false], 500);
         }
-        Cart::update($id, $request->quantity);
-        session()->flash('success', 'Quantity was updated successfuly!');
-        return response()->json(['success' =>true]);
+        
     }
 
     /**

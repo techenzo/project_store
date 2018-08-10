@@ -165,24 +165,21 @@
                                                     <td class="text-right"><h5><strong>{{moneyformat(Cart::tax())}}</strong></h5></td>
                                                 </tr>
                                                 <tr>
-                                                    <td>   </td>
-                                                    <td>   </td>
+                                                    <td><a href="#" class ="have-code">Have a Code?</a>   </td>
+                                                    <td>
+                                                        <div class="have-code-container">
+                                                            <form action="{{route('coupon.store')}}" method="POST">
+                                                                    {{csrf_field()}}
+                                                                    <input type="text" name="coupon_code" id ="coupon_code">
+                                                                    <button type="submit" class ="btn button-plain">Apply</button>
+                                                            </form>
+                                                        </div>   </td>
                                                     <td>   </td>
                                                     <td><h3>Total</h3></td>
                                                     <td class="text-right"><h3><strong>{{moneyformat(Cart::total())}}</strong></h3></td>
                                                 </tr>
                                             </tbody>
                                         </table>
-
-                                        <a href="#" class ="have-code">Have a Code?</a>
-                                        <div class="have-code-container">
-                                            <form action="{{route('coupon.store')}}" method="POST">
-                                                    {{csrf_field()}}
-                                                    <input type="text" name="coupon_code" id ="coupon_code">
-                                                    <button type="submit" class ="btn button-plain">Apply</button>
-                                            </form>
-                                        </div>
-                                    
                                 </div>
                             </div>
                             <div class="panel panel-default">

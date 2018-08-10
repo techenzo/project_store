@@ -28,8 +28,9 @@
                     <tbody>
                         @foreach (Cart::content() as $item)
                         <tr>
+                                
+                                
                             <td class="col-sm-8 col-md-6">
-                            
                             <div class="media">
                                 <a class="thumbnail pull-left" href="{{route('shop.show', $item->model->slug)}}"> <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;"> </a>
                                 <div class="media-body">
@@ -43,18 +44,18 @@
                             {{-- <input type="email" class="form-control" id="exampleInputEmail1" value="{{Cart::count()}}"> --}}
                             <select class="form-control quantity" name="quantity" id="quantity" data-id="{{$item->rowId}}">
                                 @for($i = 1; $i < 10 + 1 ; $i++)
-                            <option {{ $item->qty == $i ? 'selected' : ''}}>{{$i}}</option>
+                                <option{{ $item->qty == $i ? 'selected' : ''}}>{{$i}}</option>
                                 @endfor
 
-                                {{-- <option {{ $item->qty == 1 ? 'selected' : ''}}>1</option>
-                                <option {{ $item->qty == 2 ? 'selected' : ''}}>2</option>
-                                <option {{ $item->qty == 3 ? 'selected' : ''}}>3</option>
-                                <option {{ $item->qty == 4 ? 'selected' : ''}}>4</option>
-                                <option {{ $item->qty == 5 ? 'selected' : ''}}>5</option> --}}
+                                {{-- <option value ="1" >1</option>
+                                <option value ="2" >2</option>
+                                <option value ="3" >3</option>
+                                <option value ="4" >4</option>
+                                <option value ="5" >5</option> --}}
                             </select> 
                             </td>
                             <td class="col-sm-1 col-md-1 text-center"><strong>{{moneyformat($item->model->price)}}</strong></td>
-                            <td class="col-sm-1 col-md-1 text-center"><strong>{{moneyformat($item->model->price * Cart::count())}}</strong></td>
+                            <td class="col-sm-1 col-md-1 text-center"><strong>{{moneyformat($item->model->price * $item->qty)}}</strong></td>
                             <td class="col-sm-1 col-md-1">
                                 <form action="{{route('cart.destroy', $item->rowId)}}" method="POST">
                                 {{csrf_field()}}
@@ -310,18 +311,45 @@
         Array.from(classname).forEach(function(element){
             element.addEventListener('change', function(){
                 const id = element.getAttribute('data-id')
-                axios.patch('/cart/${id}', {
+                // axios.post('/cart/$id', {
                 
-                    quantity: this.value
+                //     quantity: this.value,
+                //     id:id
+                    
+                // })
+                // .then(function (response) {
+                //     console.log(response);
+                //     // window.location.href = '{{route('cart.index')}}'
+                //     console.log(quantity)
+                    
+                // })
+                // .catch(function (error) {
+                //     console.log(error);
+                //     console.log('error')
+                //     // window.location.href = '{{route('cart.index')}}'
+                // });
+
+                axios({
+                    method: 'post',
+                    url: '/carts',
+                    data: {
+                        quantity: this.value,
+                        id:id
+                    }
+                    
                 })
                 .then(function (response) {
-                    console.log(response);
-                    // window.location.href = '{{route('cart.index')}}'
+                    console.log(response.data.carts);
+                    window.location.href = '{{route('cart.index')}}'
+                    // console.log(quantity)
+                    
                 })
                 .catch(function (error) {
                     console.log(error);
-                    window.location.href = '{{route('cart.index')}}'
+                    console.log('error')
+                    // window.location.href = '{{route('cart.index')}}'
                 });
+                
             })
         })
       })();
