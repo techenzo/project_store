@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Cart;
 
 class CheckoutController extends Controller
 {
@@ -13,7 +14,19 @@ class CheckoutController extends Controller
      */
     public function index()
     {
-        return view('pages.checkout');
+        $tax = config('cart.tax') / 100;
+        $discount = session()->get('coupon')['discount'] ?? 0;
+        $newSubtotal = (Cart::subtotal() - $discount);
+        $newTax = $newSubtotal * $tax;
+        $newTotal  = $newSubtotal * (1 + $tax);
+
+        return view('pages.checkout')->with([
+
+            'discount' => $discount,
+            'newSubtotal' => $newSubtotal,
+            'newTax' => $newTax,
+            'newTotal' => $newTotal,
+        ]);
     }
 
     /**

@@ -43,7 +43,8 @@
                             <td class="col-sm-1 col-md-1" style="text-align: center">
                             {{-- <input type="email" class="form-control" id="exampleInputEmail1" value="{{Cart::count()}}"> --}}
                             <select class="form-control quantity" name="quantity" id="quantity" data-id="{{$item->rowId}}">
-                                @for($i = 1; $i < 10 + 1 ; $i++)
+                                
+                                @for($i = 1 ; $i <=10  ; $i++)
                                 <option{{ $item->qty == $i ? 'selected' : ''}}>{{$i}}</option>
                                 @endfor
 

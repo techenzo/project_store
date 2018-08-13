@@ -139,13 +139,11 @@
                                                     <td class="text-right"><h5><strong>{{moneyformat(Cart::subtotal())}}</strong></h5></td>
                                                 </tr>
                                                 
-                                                <tr>
-                                                    @if(session()->has('coupon'))
+                                                <tr>@if(session()->has('coupon'))
                                                     <td>   </td>
                                                     <td>   </td>
                                                     <td>   </td>    
-                                                    <td> 
-                                                        <h5>Discount {{session()->get('coupon')['name']}}</h5>
+                                                    <td><h5>Discount {{session()->get('coupon')['name']}}</h5>
                                                         <form action="{{route('coupon.destroy')}}" method ="POST">
                                                             {{csrf_field()}}
                                                             {{method_field('delete')}}             
@@ -153,16 +151,29 @@
                                                         </form>
                                                     </td>
                                                     @endif
-                                                        @if(session()->has('coupon'))
-                                                        <td class="text-right"><h5><strong>{{moneyformat(session()->get('coupon')['discount'])}}</strong></h5></td>
-                                                        @endif
-                                                    </tr>
+                                                    @if(session()->has('coupon'))
+                                                    {{-- <td class="text-right"><h5><strong>{{moneyformat(session()->get('coupon')['discount'])}}</strong></h5></td> --}}
+                                                    <td class="text-right"><h5><strong>{{moneyformat( - $discount)}}</strong></h5></td>
+                                                    @endif
+                                                </tr>
+
+                                                <tr>@if(session()->has('coupon'))
+                                                    <td>   </td>
+                                                    <td>   </td>
+                                                    <td>   </td>
+                                                        <td><h5>New Subtotal</h5></td>
+                                                    @endif
+                                                    @if(session()->has('coupon'))
+                                                        <td class="text-right"><h5><strong>{{moneyformat($newSubtotal)}}</strong></h5></td>
+                                                    @endif
+                                                </tr>
+
                                                 <tr>
                                                     <td>   </td>
                                                     <td>   </td>
                                                     <td>   </td>
                                                     <td><h5>Tax</h5></td>
-                                                    <td class="text-right"><h5><strong>{{moneyformat(Cart::tax())}}</strong></h5></td>
+                                                    <td class="text-right"><h5><strong>{{moneyformat($newTax)}}</strong></h5></td>
                                                 </tr>
                                                 <tr>
                                                     <td><a href="#" class ="have-code">Have a Code?</a>   </td>
@@ -176,7 +187,7 @@
                                                         </div>   </td>
                                                     <td>   </td>
                                                     <td><h3>Total</h3></td>
-                                                    <td class="text-right"><h3><strong>{{moneyformat(Cart::total())}}</strong></h3></td>
+                                                    <td class="text-right"><h3><strong>{{moneyformat($newTotal)}}</strong></h3></td>
                                                 </tr>
                                             </tbody>
                                         </table>
