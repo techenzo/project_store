@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> -->
     <style>
         #toggle_cart{
             padding: 8px;
@@ -28,6 +29,14 @@
         button{
         margin: 30px 60px;
             
+        }
+        
+        .disabled  {
+            display: none   ;
+            
+        }
+        h2{
+            color:red;
         }
 
 
@@ -63,18 +72,13 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="Stylesheet" type="text/css" />
 
-    <script>
+    <script type="text/javascript">
+        $(document).ready(function()
+        {
+           alert('kkkoo');
 
-       
-        $(document).ready(function() {
-            $("#show_hide").mouseover(function () {
-                $("#toggle_cart").removeClass('hidden').toggle(1500,"easeOutQuint",function(){
-                });
-        });  
         });
-            
-    </script>
-    
+</script>
  
 </body>
 </html>

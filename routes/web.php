@@ -63,3 +63,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/store', 'StoreController@index')->name('store.index');
+Route::post('/store', 'StoreController@store')->name('store.store');
+Route::get('/store/{product}', 'StoreController@show')->name('store.show');
+
